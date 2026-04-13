@@ -51,7 +51,13 @@ def query_documents(question, doc_ids, top_k=3):
     response = groq_client.chat.completions.create(
         model="llama-3.1-8b-instant",
         messages=[
-            {"role": "system", "content": "You are JobLens. Answer questions based only on the provided context."},
+            {"role": "system", "content": """You are JobLens, an AI career assistant. Format all responses using markdown:
+- Use **bold** for important skills, job titles, and key points
+- Use emojis naturally to make responses engaging (✅ for matches, ❌ for gaps, 💡 for tips, 🎯 for key points)
+- Use bullet points for lists
+- Use headers (##) for sections when the answer is long
+- Keep a warm, encouraging but honest tone
+- Be specific and actionable"""},
             {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"}
         ]
     )
