@@ -2,8 +2,7 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir fastapi uvicorn groq boto3 python-multipart python-dotenv psycopg2-binary numpy faiss-cpu
 
 COPY . .
 
